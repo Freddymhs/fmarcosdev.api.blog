@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  strapi:
+    build: .
+    ports:
+      - "3002:1337"
+    volumes:
+      - ./.tmp:/app/.tmp
+      - ./public/uploads:/app/public/uploads
+    env_file: .env
+    restart: unless-stopped
