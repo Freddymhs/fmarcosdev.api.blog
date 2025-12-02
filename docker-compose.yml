@@ -1,12 +1,15 @@
-version: '3.8'
-
 services:
   strapi:
-    build: .
+    build:
+      context: .
+      target: development
     ports:
       - "3002:1337"
     volumes:
       - ./.tmp:/app/.tmp
       - ./public/uploads:/app/public/uploads
+      - ./src:/app/src
+      - ./config:/app/config
     env_file: .env
     restart: unless-stopped
+    command: npm run dev

@@ -4,12 +4,14 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
+    "dev": "strapi develop",
     "build": "strapi build",
+    "start": "strapi start",
+    "dev:docker": "docker compose up",
+    "dev:docker:build": "docker compose build",
+    "dev:docker:down": "docker compose down",
     "console": "strapi console",
     "deploy": "strapi deploy",
-    "dev": "docker run -p 3002:1337 --env-file .env -v $(pwd)/.tmp:/app/.tmp -v $(pwd)/public/uploads:/app/public/uploads fmarcosdev-api-blog",
-    "dev:build": "docker build -t fmarcosdev-api-blog .",
-    "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
