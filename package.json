@@ -14,7 +14,8 @@
     "deploy": "strapi deploy",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "migrate": "node migrate/migrate-blogs.js"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.16.1",
