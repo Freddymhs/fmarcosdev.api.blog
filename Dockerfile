@@ -6,6 +6,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY config ./config
+# Provide favicon for the admin (Strapi looks for /app/favicon.ico)
+COPY favicon.ico ./favicon.ico
 
 RUN npm ci
 
