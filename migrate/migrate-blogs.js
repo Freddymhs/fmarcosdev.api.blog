@@ -2,16 +2,18 @@
 /**
  * Simple Blog Migration Script
  *
- * Reads .md files from 'ready' folder and uploads to Strapi
+ * Reads .md files from "ready" folder and uploads to Strapi
  * - Title = filename
  * - Content = full file content
  */
 
 const fs = require("fs");
 const path = require("path");
+require("dotenv").config();
 
 const READY_FOLDER = path.join(__dirname, "ready");
 const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
+const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN || "";
 
 /**
  * Convert filename to title
@@ -29,9 +31,14 @@ function filenameToTitle(filename) {
  * Upload article to Strapi
  */
 async function uploadArticle(title, content) {
+  const headers = {
+    "Content-Type": "application/json",
+    ...(STRAPI_API_TOKEN && { Authorization: `Bearer ${STRAPI_API_TOKEN}` }),
+  };
+
   const response = await fetch(`${STRAPI_URL}/api/articles`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: headers,
     body: JSON.stringify({
       data: {
         title: title,
@@ -52,7 +59,7 @@ async function uploadArticle(title, content) {
  * Main migration
  */
 async function migrate() {
-  console.log("🚀 Starting migration...\n");
+  console.log("🚀 Starting migration...");
 
   // Check folder exists
   if (!fs.existsSync(READY_FOLDER)) {
