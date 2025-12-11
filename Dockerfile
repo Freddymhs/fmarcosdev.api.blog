@@ -18,7 +18,7 @@ RUN mkdir -p .tmp public/uploads
 
 EXPOSE 1337
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "strapi", "--", "develop"]
 
 # ========== PRODUCCIÓN ==========
 FROM node:18-alpine AS production

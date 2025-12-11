@@ -12,4 +12,4 @@ services:
       - ./config:/app/config
     env_file: .env
     restart: unless-stopped
-    command: npm run dev
+    command: npm run strapi -- develop
